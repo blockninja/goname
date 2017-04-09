@@ -1,0 +1,4 @@
+package: github.com/blockninja/goname
+import:
+- package: github.com/antonholmquist/jason
+  version: ^1.0.0

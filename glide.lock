@@ -1,0 +1,6 @@
+hash: 3e446eba8891a04bde60bbe03c163f8de314efb87e31ff1b3dda64782aa76a7a
+updated: 2017-04-08T16:05:34.225173731+08:00
+imports:
+- name: github.com/antonholmquist/jason
+  version: c23cef7eaa75a6a5b8810120e167bd590d8fd2ab
+testImports: []

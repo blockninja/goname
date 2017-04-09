@@ -110,8 +110,6 @@ func (gn *GoName) Account() (AccountResponse, error) {
 		return accData, err
 	}
 
-	fmt.Println(accData)
-
 	return accData, err
 }
 

@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"net/http/cookiejar"
 	"os"
+	"time"
 )
 
 // GoName API controller
@@ -150,11 +151,11 @@ func (gn *GoName) request(req *http.Request, data interface{}) error {
 	req.Header.Set("Api-Session-Token", gn.session_token)
 
 	resp, err := gn.client.Do(req)
-	defer resp.Body.Close()
-
 	if err != nil {
 		return err
 	}
+	defer resp.Body.Close()
+
 	if resp.StatusCode != 200 {
 		return errors.New(fmt.Sprintf("Request error name.com: %s", resp.Status))
 	}
@@ -175,7 +176,7 @@ func (gn *GoName) get(url string, data interface{}) error {
 }
 
 // New Creates a new Name.com API controller
-func New(username, apikey string) *GoName {
+func New(username, apikey string, timeout time.Duration) *GoName {
 	cookieJar, _ := cookiejar.New(nil)
 
 	var baseURL string
@@ -186,7 +187,8 @@ func New(username, apikey string) *GoName {
 	}
 
 	client := &http.Client{
-		Jar: cookieJar,
+		Jar:     cookieJar,
+		Timeout: timeout,
 	}
 
 	gn := &GoName{
